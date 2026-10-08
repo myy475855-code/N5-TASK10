@@ -1,0 +1,11 @@
+{
+  "openapi":"3.0.3",
+  "info":{"title":"Internship Catalog API","version":"1.0.0","description":"Internship search, pagination and secure profile upload API."},
+  "servers":[{"url":"http://localhost:3000"}],
+  "paths":{
+    "/health":{"get":{"summary":"Health check","responses":{"200":{"description":"Healthy"}}}},
+    "/internships":{"get":{"summary":"Search, filter, sort and paginate internships","responses":{"200":{"description":"Paginated internship data"}}}},
+    "/uploads/companies/{id}/logo":{"post":{"summary":"Upload company logo","responses":{"201":{"description":"Uploaded"},"403":{"description":"Not owner"},"422":{"description":"Invalid file"}}}},
+    "/uploads/students/{id}/resume":{"post":{"summary":"Upload student resume","responses":{"201":{"description":"Uploaded"},"403":{"description":"Not owner"},"422":{"description":"Invalid file"}}}}
+  }
+}

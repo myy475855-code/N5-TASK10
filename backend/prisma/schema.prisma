@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  COMPANY
+  ADMIN
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  name     String
+  role     Role
+  student  Student?
+  company  Company?
+  createdAt DateTime @default(now())
+}
+
+model Student {
+  id         Int    @id @default(autoincrement())
+  userId     Int    @unique
+  university String
+  resumePath String?
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Company {
+  id          Int           @id @default(autoincrement())
+  userId      Int           @unique
+  name        String
+  location    String
+  logoPath    String?
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  internships Internship[]
+  @@index([location])
+}
+
+model Internship {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  category    String
+  location    String
+  workMode    String
+  stipend     Int?
+  duration    String
+  createdAt   DateTime @default(now())
+  companyId   Int
+  company     Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  @@index([location])
+  @@index([category])
+  @@index([createdAt])
+  @@index([companyId])
+  @@index([location, createdAt])
+}

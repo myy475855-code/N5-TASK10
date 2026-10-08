@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Internship Catalog</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header><h1>Internship Catalog</h1><a href="/api-docs" target="_blank">API Docs</a></header>
+<main>
+<section class="controls">
+<input id="search" placeholder="Search internship or company">
+<select id="location"><option value="">All locations</option></select>
+<select id="category"><option value="">All categories</option></select>
+<select id="sort">
+<option value="newest">Newest</option><option value="oldest">Oldest</option>
+<option value="title_asc">Title A-Z</option><option value="title_desc">Title Z-A</option>
+<option value="stipend_desc">Highest stipend</option><option value="stipend_asc">Lowest stipend</option>
+</select>
+</section>
+<div id="status"></div>
+<section id="cards"></section>
+<nav id="pagination"></nav>
+</main>
+<script src="/app.js" defer></script>
+</body>
+</html>
